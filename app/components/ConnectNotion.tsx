@@ -52,8 +52,6 @@ const ConnectNotion = () => {
   const code = searchParams.get("code");
 
   useEffect(() => {
-    console.log("TF useEffect");
-
     const user = localStorage.getItem("notion_user_data");
     const userData = localStorage.getItem("notion_search");
     if (user && userData) {
@@ -64,6 +62,7 @@ const ConnectNotion = () => {
 
     if (!code) return;
 
+    // get access_token from code (OAuth2.0)
     setLoading(true);
     fetch("/api/generateToken", {
       method: "POST",
@@ -71,7 +70,6 @@ const ConnectNotion = () => {
     })
       .then((res) => res.json())
       .then((res: NotionResponse) => {
-        console.log({ res });
         setResponse(res);
         if (res.error) {
           alert(res.error_description);
@@ -87,7 +85,6 @@ const ConnectNotion = () => {
           })
             .then((res) => res.json())
             .then((res) => {
-              console.log({ res });
               localStorage.setItem("notion_search", JSON.stringify(res));
               setData(res);
             });
@@ -136,7 +133,7 @@ const ConnectNotion = () => {
           </div>
         </div>
       </div>
-      {code && (
+      {(loading || response) && (
         <div className="mb-10 rounded border border-gray-200">
           <div className="border-b border-gray-200 bg-white py-4 px-5">
             <h3 className="text-xl font-semibold leading-6 text-gray-900 ">
@@ -152,31 +149,44 @@ const ConnectNotion = () => {
                   {response.error ? (
                     <pre>JSON.stringify(response, null, 2)</pre>
                   ) : (
-                    <div>
-                      <div className="flex items-center space-x-2 mb-10">
-                        <img
-                          src={response.workspace_icon}
-                          className="w-8 h-8 rounded-lg"
-                        />
-                        <p>{response.workspace_name}</p>
-                      </div>
-                      <p className="font-semibold">
-                        {data.results.length} Item(s) found:
-                      </p>
-                      <ul>
-                        {data.results.map((item: any, key: number) => (
-                          <li key={key}>
-                            <p>
-                              {key + 1}. {item.object} | {item.id}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
-                      <pre className="bg-slate-700 text-slate-100 p-2 rounded-lg overflow-x-scroll">
-                        {JSON.stringify(data, null, 2)}
-                      </pre>
+                    <div className="flex items-center space-x-2 mb-10">
+                      <img
+                        src={response.workspace_icon}
+                        className="w-8 h-8 rounded-lg"
+                      />
+                      <p>{response.workspace_name}</p>
                     </div>
                   )}
+                </div>
+              )}
+
+              {data && (
+                <div className="flex flex-col space-y-2">
+                  <p className="font-semibold">
+                    {data.results?.length} item(s) found:
+                  </p>
+                  <div className="border overflow-x-scroll">
+                    <table className="table-auto">
+                      <tr className="border-b bg-slate-50">
+                        <th className="text-left p-2">Type</th>
+                        <th className="text-left p-2">URL</th>
+                      </tr>
+                      {data.results?.map((item: any, key: number) => (
+                        <tr key={key} className="border-b">
+                          <td className="p-2 pr-12">{item.object}</td>
+                          <td className="p-2 pr-12">
+                            <a href={item.url} target="_blank">
+                              {item.url}
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
+                    </table>
+                  </div>
+
+                  <pre className="bg-slate-700 text-slate-100 p-2 rounded-lg overflow-x-scroll">
+                    {JSON.stringify(data, null, 2)}
+                  </pre>
                 </div>
               )}
             </div>
