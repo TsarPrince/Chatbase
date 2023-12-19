@@ -104,7 +104,7 @@ const ConnectNotion = () => {
         <div className="p-5">
           <div className="flex flex-col items-center">
             <div className="py-12">
-              <a href={AUTH_URL}>
+              <a href={AUTH_URL} onClick={() => localStorage.clear()}>
                 <button
                   // onClick={authorize}
                   data-variant="flat"
