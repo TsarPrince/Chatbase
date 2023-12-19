@@ -347,9 +347,9 @@ const Privacy = () => {
         </ol>
         <p>
           If you wish to execute any of the above-mentioned rights, please email
-          us at support@chatbase.co. Please note that we may ask you to verify
-          your identity before responding to such requests. Please note, we may
-          not able to provide Service without some necessary data.
+          us at shackledshark@gmail.com. Please note that we may ask you to
+          verify your identity before responding to such requests. Please note,
+          we may not able to provide Service without some necessary data.
         </p>
         <h5>
           12. Your Data Protection Rights under the California Privacy
@@ -383,7 +383,7 @@ const Privacy = () => {
           </li>
           <li>
             users are able to change their personal information by emailing us
-            at support@chatbase.co.
+            at shackledshark@gmail.com.
           </li>
         </ol>
         <p>Our Policy on “Do Not Track” Signals:</p>
@@ -501,7 +501,7 @@ const Privacy = () => {
         <h5>19. Contact Us</h5>
         <p>
           If you have any questions about this Privacy Policy, please contact us
-          at support@chatbase.co.
+          at shackledshark@gmail.com.
         </p>
         <h5>20. Privacy Policy Addendum</h5>
         <p>
