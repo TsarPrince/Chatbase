@@ -1,9 +1,7 @@
-import Image from "next/image";
 import React from "react";
-import Navbar from "@/components/Navbar";
 import ConnectNotion from "@/components/ConnectNotion";
 
-const page2 = () => {
+const Home = () => {
   return (
     <div>
       <div className="my-8 ">
@@ -197,4 +195,4 @@ const page2 = () => {
   );
 };
 
-export default page2;
+export default Home;

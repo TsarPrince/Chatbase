@@ -3,7 +3,7 @@ import React from "react";
 const Privacy = () => {
   return (
     <div className="py-16 sm:py-24">
-      <div className="prose mx-auto max-w-7xl">
+      <div className="prose mx-auto max-w-5xl">
         <h1>Privacy Policy</h1>
         <p>Last modified: March 2, 2023</p>
         <h5>1. Introduction</h5>
