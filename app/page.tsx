@@ -6,7 +6,6 @@ import ConnectNotion from "@/components/ConnectNotion";
 const page2 = () => {
   return (
     <div>
-      <Navbar />
       <div className="my-8 ">
         <h1 className="mb-2 text-center text-3xl font-bold">Data Sources</h1>
         <p className="  text-center text-zinc-500">
